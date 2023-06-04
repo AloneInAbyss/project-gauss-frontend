@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './star-rail.component.html',
   styleUrls: []
 })
-export class StarRailComponent {
-
-}
+export class StarRailComponent {}
