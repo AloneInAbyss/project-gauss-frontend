@@ -11,12 +11,14 @@ const routes: Routes = [
   },
   {
     path: 'home',
+    title: 'Project Gauss',
     component: HomeComponent,
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomeModule)
   },
   {
     path: 'star-rail',
+    title: 'Honkai Star Rail',
     component: StarRailComponent,
     loadChildren: () =>
       import('./pages/star-rail/star-rail.module').then((m) => m.StarRailModule)
