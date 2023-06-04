@@ -1,0 +1,5 @@
+**/.angular
+**/dist
+*.scss
+*.json
+*.js
