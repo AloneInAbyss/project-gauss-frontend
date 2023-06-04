@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeCard } from 'src/app/models/cards/home-card';
+import { StarRailRoute } from 'src/app/routes/routes';
 
 @Component({
   selector: 'app-home',
@@ -17,15 +18,7 @@ export class HomeComponent {
         title: 'Honkai Star Rail',
         content:
           'Tools for calculations on artifacts stats, level up materials, and more!',
-        route: '/star-rail',
-        button: 'GO'
-      },
-      {
-        subtitle: 'Guide',
-        title: 'Genshin Impact',
-        content:
-          'Tools for calculations on artifacts stats, level up materials, and more!',
-        route: '/',
+        route: '/' + StarRailRoute.path,
         button: 'GO'
       }
     ];
