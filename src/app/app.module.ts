@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
-import { AppMaterialModule } from './shared/app-material/app-material.module';
+import { AppMaterialModule } from './shared/modules/app-material.module';
 
 @NgModule({
   declarations: [AppComponent, LayoutComponent],
