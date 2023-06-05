@@ -1,25 +1,28 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MainStatsEnum, RelicTypeEnum } from './models/star-rail-enums';
+
+import { MainStatsEnum, RelicTypeEnum } from './models/relic-enums';
+import { RelicMainStats } from './models/relic-main-stats.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StarRailService {
-  constructor() {}
+  constructor(private httpClient: HttpClient) {}
 
-  listMainStatAvailability() {
+  listMainStatAvailability(): RelicMainStats[] {
     return [
       {
         relicType: RelicTypeEnum.HEAD,
-        possibleStats: [MainStatsEnum.FLAT_HP]
+        availableStats: [MainStatsEnum.FLAT_HP]
       },
       {
         relicType: RelicTypeEnum.HANDS,
-        possibleStats: [MainStatsEnum.FLAT_ATK]
+        availableStats: [MainStatsEnum.FLAT_ATK]
       },
       {
         relicType: RelicTypeEnum.BODY,
-        possibleStats: [
+        availableStats: [
           MainStatsEnum.PERC_HP,
           MainStatsEnum.PERC_ATK,
           MainStatsEnum.PERC_DEF,
@@ -29,7 +32,7 @@ export class StarRailService {
       },
       {
         relicType: RelicTypeEnum.FEET,
-        possibleStats: [
+        availableStats: [
           MainStatsEnum.SPD,
           MainStatsEnum.PERC_HP,
           MainStatsEnum.PERC_ATK,
@@ -38,7 +41,7 @@ export class StarRailService {
       },
       {
         relicType: RelicTypeEnum.PLANAR_SPHERE,
-        possibleStats: [
+        availableStats: [
           MainStatsEnum.PERC_HP,
           MainStatsEnum.PERC_ATK,
           MainStatsEnum.PERC_DEF,
@@ -53,7 +56,7 @@ export class StarRailService {
       },
       {
         relicType: RelicTypeEnum.LINK_ROPE,
-        possibleStats: [
+        availableStats: [
           MainStatsEnum.PERC_HP,
           MainStatsEnum.PERC_ATK,
           MainStatsEnum.PERC_DEF,
