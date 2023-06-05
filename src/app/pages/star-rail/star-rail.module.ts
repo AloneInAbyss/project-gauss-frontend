@@ -2,10 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { StarRailComponent } from './star-rail.component';
-import { AppMaterialModule } from 'src/app/shared/modules/app-material.module';
 
 @NgModule({
   declarations: [StarRailComponent],
-  imports: [CommonModule, AppMaterialModule]
+  imports: [CommonModule]
 })
 export class StarRailModule {}
