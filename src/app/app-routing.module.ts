@@ -6,11 +6,6 @@ import { HomeRoute, StarRailRoute } from './routes/routes';
 
 const routes: Routes = [
   {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: HomeRoute.path
-  },
-  {
     path: HomeRoute.path,
     title: HomeRoute.title,
     component: HomeComponent,
@@ -23,6 +18,11 @@ const routes: Routes = [
     component: StarRailComponent,
     loadChildren: () =>
       import('./pages/star-rail/star-rail.module').then((m) => m.StarRailModule)
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: HomeRoute.path
   }
 ];
 
