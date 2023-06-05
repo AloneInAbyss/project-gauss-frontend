@@ -16,22 +16,6 @@ export class HomeComponent {
         'Tools for calculations on artifacts stats, level up materials, and more!',
       route: '/' + StarRailRoute.path,
       button: 'GO'
-    },
-    {
-      subtitle: 'Guide',
-      title: 'Honkai Star Rail',
-      content:
-        'Tools for calculations on artifacts stats, level up materials, and more!',
-      route: '/' + StarRailRoute.path,
-      button: 'GO'
-    },
-    {
-      subtitle: 'Guide',
-      title: 'Honkai Star Rail',
-      content:
-        'Tools for calculations on artifacts stats, level up materials, and more!',
-      route: '/' + StarRailRoute.path,
-      button: 'GO'
     }
   ];
 }
