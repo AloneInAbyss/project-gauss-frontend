@@ -1,0 +1,12 @@
+{
+  "homeCards": {
+    "starRailHomeCard": {
+      "subtitle": "Guia",
+      "title": "Honkai Star Rail",
+      "content": "Ferramentas para cálculos de artefatos, materiais para upar, entre outros!"
+    }
+  },
+  "button": {
+    "go": "CONTINUAR"
+  }
+}
