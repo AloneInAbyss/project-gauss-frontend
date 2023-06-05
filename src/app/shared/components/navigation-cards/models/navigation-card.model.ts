@@ -1,4 +1,4 @@
-export interface HomeCard {
+export interface NavigationCard {
   subtitle: string;
   title: string;
   content: string;
