@@ -12,7 +12,8 @@ export class StarRailComponent {
     {
       subtitle: 'Info',
       title: 'Relics',
-      content: 'View each relic type, corresponding main stats and possible substats values',
+      content:
+        'View each relic type, corresponding main stats and possible substats values',
       route: '/' + StarRailRoute.path,
       button: 'GO'
     }
