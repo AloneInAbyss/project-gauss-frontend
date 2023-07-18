@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
 import { StarRailRoute } from 'src/app/routes/routes';
 import { NavigationCard } from 'src/app/shared/components/navigation-cards/models/navigation-card.model';
 
@@ -8,14 +9,15 @@ import { NavigationCard } from 'src/app/shared/components/navigation-cards/model
   styleUrls: []
 })
 export class HomeComponent {
+  constructor(private t: TranslocoService) {}
+
   cards: NavigationCard[] = [
     {
-      subtitle: 'Guide',
-      title: 'Honkai Star Rail',
-      content:
-        'Tools for calculations on artifacts stats, level up materials, and more!',
+      subtitle: this.t.translate('homeCards.starRailHomeCard.subtitle'),
+      title: this.t.translate('homeCards.starRailHomeCard.title'),
+      content: this.t.translate('homeCards.starRailHomeCard.content'),
       route: '/' + StarRailRoute.path,
-      button: 'GO'
+      button: this.t.translate('button.go')
     }
   ];
 }

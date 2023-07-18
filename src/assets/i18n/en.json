@@ -1,1 +1,19 @@
-{}
+{
+  "homeCards": {
+    "starRailHomeCard": {
+      "subtitle": "Guide",
+      "title": "Honkai Star Rail",
+      "content": "Tools for calculations on artifacts stats, level up materials, and more!"
+    },
+    "starRail": {
+      "relicsHomeCard": {
+        "subtitle": "Honkai Star Rail",
+        "title": "Relics",
+        "content": "View each relic type, corresponding main stats and possible substats values"
+      }
+    }
+  },
+  "button": {
+    "go": "GO"
+  }
+}
