@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
-import { AvailableLanguages } from './available-languages-enum';
+import { getBrowserLang } from '@ngneat/transloco';
+import { AvailableLanguages } from '../../models/available-languages-enum';
+import { LocalStorageKeys } from '../../models/local-storage-keys-enum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   getUserLanguage(): string {
-    const currentLang = localStorage.getItem('language') ?? '';
+    const currentLang =
+      localStorage.getItem(LocalStorageKeys.LANGUAGE) ?? getBrowserLang() ?? '';
     const isLangAvailable = Object.values(AvailableLanguages).some(
       (availableLang) => availableLang === currentLang
     );
@@ -14,6 +17,6 @@ export class UserService {
   }
 
   setUserLanguage(language: string) {
-    localStorage.setItem('language', language);
+    localStorage.setItem(LocalStorageKeys.LANGUAGE, language);
   }
 }

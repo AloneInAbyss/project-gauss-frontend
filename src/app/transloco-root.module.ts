@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
+import { Injectable, NgModule, isDevMode } from '@angular/core';
 import {
+  TRANSLOCO_CONFIG,
   TRANSLOCO_LOADER,
   Translation,
   TranslocoLoader,
-  TRANSLOCO_CONFIG,
-  translocoConfig,
-  TranslocoModule
+  TranslocoModule,
+  translocoConfig
 } from '@ngneat/transloco';
-import { Injectable, isDevMode, NgModule } from '@angular/core';
-import { AvailableLanguages } from './shared/services/available-languages-enum';
+import { AvailableLanguages } from './shared/models/available-languages-enum';
 
 @Injectable({ providedIn: 'root' })
 export class TranslocoHttpLoader implements TranslocoLoader {
@@ -27,6 +27,7 @@ export class TranslocoHttpLoader implements TranslocoLoader {
       useValue: translocoConfig({
         availableLangs: Object.values(AvailableLanguages),
         defaultLang: AvailableLanguages.PT,
+        fallbackLang: AvailableLanguages.EN,
         reRenderOnLangChange: true,
         prodMode: !isDevMode()
       })

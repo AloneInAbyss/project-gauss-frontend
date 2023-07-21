@@ -3,20 +3,20 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { TranslocoService } from '@ngneat/transloco';
+import { lastValueFrom } from 'rxjs';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
 import { AppMaterialModule } from './shared/modules/app-material.module';
+import { UserService } from './shared/services/user/user.service';
 import { TranslocoRootModule } from './transloco-root.module';
-import { TranslocoService } from '@ngneat/transloco';
-import { UserService } from './shared/services/user.service';
-import { lastValueFrom } from 'rxjs';
 
 export function preloadUser(
   userService: UserService,
   transloco: TranslocoService
 ) {
-  return function () {
+  return () => {
     const language = userService.getUserLanguage();
     transloco.setActiveLang(language);
     return lastValueFrom(transloco.load(language));
