@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
 import { StarRailRoute } from 'src/app/routes/routes';
 import { NavigationCard } from 'src/app/shared/components/navigation-cards/models/navigation-card.model';
 
@@ -8,14 +9,15 @@ import { NavigationCard } from 'src/app/shared/components/navigation-cards/model
   styleUrls: []
 })
 export class StarRailComponent {
+  constructor(private t: TranslocoService) {}
+
   cards: NavigationCard[] = [
     {
-      subtitle: 'Info',
-      title: 'Relics',
-      content:
-        'View each relic type, corresponding main stats and possible substats values',
+      subtitle: this.t.translate('homeCards.starRail.relicsHomeCard.subtitle'),
+      title: this.t.translate('homeCards.starRail.relicsHomeCard.title'),
+      content: this.t.translate('homeCards.starRail.relicsHomeCard.content'),
       route: '/' + StarRailRoute.path,
-      button: 'GO'
+      button: this.t.translate('button.go')
     }
   ];
 }

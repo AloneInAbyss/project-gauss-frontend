@@ -8,6 +8,11 @@ export const HomeRoute: RoutesInfo = {
   title: 'Home'
 };
 
+export const DummyRoute: RoutesInfo = {
+  path: 'dummy-route',
+  title: ''
+};
+
 interface RoutesInfo {
   path: string;
   title: string;

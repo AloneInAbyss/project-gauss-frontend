@@ -1,0 +1,19 @@
+{
+  "homeCards": {
+    "starRailHomeCard": {
+      "subtitle": "Guia",
+      "title": "Honkai Star Rail",
+      "content": "Ferramentas para cálculos de artefatos, materiais para upar, entre outros!"
+    },
+    "starRail": {
+      "relicsHomeCard": {
+        "subtitle": "Honkai Star Rail",
+        "title": "Relíquias",
+        "content": "Veja cada tipo de relíquia, os status principais correspondentes e possíveis substatus"
+      }
+    }
+  },
+  "button": {
+    "go": "CONTINUAR"
+  }
+}

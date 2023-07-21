@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { StarRailComponent } from './pages/star-rail/star-rail.component';
-import { HomeRoute, StarRailRoute } from './routes/routes';
+import { DummyRouteComponent } from './routes/dummy-route.component';
+import { DummyRoute, HomeRoute, StarRailRoute } from './routes/routes';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
     component: StarRailComponent,
     loadChildren: () =>
       import('./pages/star-rail/star-rail.module').then((m) => m.StarRailModule)
+  },
+  {
+    path: DummyRoute.path,
+    component: DummyRouteComponent
   },
   {
     path: '**',
