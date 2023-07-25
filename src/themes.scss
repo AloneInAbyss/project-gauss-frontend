@@ -29,6 +29,6 @@ $angular-light-theme: mat.define-light-theme(
 
 @include mat.all-component-themes($angular-dark-theme);
 
-@media (prefers-color-scheme: light) {
+.light-mode {
   @include mat.all-component-themes($angular-light-theme);
 }

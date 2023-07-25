@@ -1,3 +1,4 @@
 export enum LocalStorageKeys {
-  LANGUAGE = 'language'
+  LANGUAGE = 'language',
+  DARK_MODE = 'dark-mode'
 }
