@@ -14,7 +14,17 @@ export class DarkModeService {
   }
 
   getStoredDarkMode(): boolean {
+    const localStorageItem = localStorage.getItem(LocalStorageKeys.DARK_MODE);
+    if (localStorageItem !== 'false' && localStorageItem !== 'true') {
+      this.setStoredDarkMode('true');
+      return true;
+    }
+
     return localStorage.getItem(LocalStorageKeys.DARK_MODE) === 'true';
+  }
+
+  setStoredDarkMode(value: string) {
+    localStorage.setItem(LocalStorageKeys.DARK_MODE, value);
   }
 
   getDarkModeObservable(): Observable<boolean> {
@@ -25,7 +35,7 @@ export class DarkModeService {
     const currentStatus = this.getStoredDarkMode();
     const nextStatus = !currentStatus;
 
-    localStorage.setItem(LocalStorageKeys.DARK_MODE, nextStatus.toString());
+    this.setStoredDarkMode(nextStatus.toString());
     this._darkMode.next(nextStatus);
   }
 }
