@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnDestroy, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { Observable, Subscription, startWith, take } from 'rxjs';
@@ -12,24 +12,30 @@ import { DarkModeService } from '../shared/services/dark-mode/dark-mode.service'
   templateUrl: './layout.component.html',
   styleUrls: []
 })
-export class LayoutComponent implements OnInit, OnDestroy {
+export class LayoutComponent implements OnDestroy {
   availableLanguages = AvailableLanguages;
-  darkMode$: Observable<boolean> = this.darkModeService
-    .getDarkModeObservable()
-    .pipe(startWith(this.darkModeService.getStoredDarkMode()));
-
+  darkMode$: Observable<boolean>;
   languageSubscription?: Subscription;
-  darkModeSubscription?: Subscription;
+  darkModeSubscription: Subscription;
 
   constructor(
     private router: Router,
     private t: TranslocoService,
     public darkModeService: DarkModeService,
     private renderer: Renderer2
-  ) {}
+  ) {
+    this.darkMode$ = this.initializeDarkModeObservable();
+    this.darkModeSubscription = this.subscribeToDarkModeService();
+  }
 
-  ngOnInit() {
-    this.darkModeSubscription = this.darkMode$.subscribe((isDarkMode) => {
+  initializeDarkModeObservable() {
+    return this.darkModeService
+      .getDarkModeObservable()
+      .pipe(startWith(this.darkModeService.getCurrentDarkModePreference()));
+  }
+
+  subscribeToDarkModeService(): Subscription {
+    return this.darkMode$.subscribe((isDarkMode) => {
       !isDarkMode
         ? this.renderer.addClass(document.body, 'light-mode')
         : this.renderer.removeClass(document.body, 'light-mode');
@@ -65,6 +71,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.languageSubscription?.unsubscribe();
-    this.darkModeSubscription?.unsubscribe();
+    this.darkModeSubscription.unsubscribe();
   }
 }
