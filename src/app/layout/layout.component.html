@@ -3,7 +3,15 @@
     <span>Project Gauss</span>
   </button>
   <span class="flex-grow"></span>
-  <button mat-icon-button [matMenuTriggerFor]="languageMenu">
+  <button
+    class="ml-2"
+    mat-icon-button
+    (click)="darkModeService.toggleDarkMode()"
+  >
+    <mat-icon *ngIf="darkMode$ | async" fontIcon="light_mode"></mat-icon>
+    <mat-icon *ngIf="!(darkMode$ | async)" fontIcon="nights_stay"></mat-icon>
+  </button>
+  <button class="ml-2" mat-icon-button [matMenuTriggerFor]="languageMenu">
     <mat-icon fontIcon="translate"></mat-icon>
   </button>
   <mat-menu class="w-64" #languageMenu="matMenu">

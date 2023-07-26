@@ -1,10 +1,11 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
-import { Subscription, take } from 'rxjs';
+import { Observable, Subscription, startWith, take } from 'rxjs';
 import { DummyRoute } from '../routes/routes';
 import { AvailableLanguages } from '../shared/models/available-languages-enum';
 import { LocalStorageKeys } from '../shared/models/local-storage-keys-enum';
+import { DarkModeService } from '../shared/services/dark-mode/dark-mode.service';
 
 @Component({
   selector: 'app-layout',
@@ -13,9 +14,33 @@ import { LocalStorageKeys } from '../shared/models/local-storage-keys-enum';
 })
 export class LayoutComponent implements OnDestroy {
   availableLanguages = AvailableLanguages;
-  subscription?: Subscription;
+  darkMode$: Observable<boolean>;
+  languageSubscription?: Subscription;
+  darkModeSubscription: Subscription;
 
-  constructor(private router: Router, private t: TranslocoService) {}
+  constructor(
+    private router: Router,
+    private t: TranslocoService,
+    public darkModeService: DarkModeService,
+    private renderer: Renderer2
+  ) {
+    this.darkMode$ = this.initializeDarkModeObservable();
+    this.darkModeSubscription = this.subscribeToDarkModeService();
+  }
+
+  initializeDarkModeObservable() {
+    return this.darkModeService
+      .getDarkModeObservable()
+      .pipe(startWith(this.darkModeService.getCurrentDarkModePreference()));
+  }
+
+  subscribeToDarkModeService(): Subscription {
+    return this.darkMode$.subscribe((isDarkMode) => {
+      !isDarkMode
+        ? this.renderer.addClass(document.body, 'light-mode')
+        : this.renderer.removeClass(document.body, 'light-mode');
+    });
+  }
 
   navigateToHome() {
     this.router.navigate(['/home']);
@@ -24,8 +49,8 @@ export class LayoutComponent implements OnDestroy {
   changeLanguage(language: string) {
     if (this.t.getActiveLang() === language) return;
 
-    this.subscription?.unsubscribe();
-    this.subscription = this.t
+    this.languageSubscription?.unsubscribe();
+    this.languageSubscription = this.t
       .load(language)
       .pipe(take(1))
       .subscribe(() => {
@@ -45,6 +70,7 @@ export class LayoutComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription?.unsubscribe();
+    this.languageSubscription?.unsubscribe();
+    this.darkModeSubscription.unsubscribe();
   }
 }
