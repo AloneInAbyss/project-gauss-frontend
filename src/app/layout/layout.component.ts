@@ -2,7 +2,7 @@ import { Component, OnDestroy, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { Observable, Subscription, startWith, take } from 'rxjs';
-import { DummyRoute } from '../routes/routes';
+import { DummyRoute, HomeRoute } from '../routes/routes';
 import { AvailableLanguages } from '../shared/models/available-languages-enum';
 import { LocalStorageKeys } from '../shared/models/local-storage-keys-enum';
 import { DarkModeService } from '../shared/services/dark-mode/dark-mode.service';
@@ -62,8 +62,13 @@ export class LayoutComponent implements OnDestroy {
 
   reloadPage() {
     const currentRoute = this.router.url;
+    const targetRoute =
+      currentRoute !== `/${DummyRoute.path}`
+        ? `/${DummyRoute.path}`
+        : `/${HomeRoute.path}`;
+
     this.router
-      .navigateByUrl(DummyRoute.path, { skipLocationChange: true })
+      .navigateByUrl(targetRoute, { skipLocationChange: true })
       .then(() => {
         this.router.navigate([currentRoute]);
       });
