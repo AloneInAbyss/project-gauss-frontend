@@ -5,6 +5,7 @@ import { AppMaterialModule } from '../modules/app-material.module';
 import { CustomDialogComponent } from './custom-dialog/custom-dialog.component';
 import { NavigationCardsComponent } from './navigation-cards/navigation-cards.component';
 import { ErrorRetryDialogComponent } from './error-retry-dialog/error-retry-dialog.component';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,7 @@ import { ErrorRetryDialogComponent } from './error-retry-dialog/error-retry-dial
     CustomDialogComponent,
     ErrorRetryDialogComponent
   ],
-  imports: [CommonModule, AppMaterialModule],
+  imports: [CommonModule, AppMaterialModule, TranslocoModule],
   exports: [NavigationCardsComponent, CustomDialogComponent]
 })
 export class SharedComponentsModule {}

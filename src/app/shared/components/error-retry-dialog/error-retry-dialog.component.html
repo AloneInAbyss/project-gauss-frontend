@@ -1,10 +1,22 @@
-<h1 mat-dialog-title>Warning</h1>
-<div mat-dialog-content>
-  <p>
-    {{ data }}
-  </p>
-  <div mat-dialog-actions align="end">
-    <button mat-stroked-button (click)="retry()" color="primary">Retry</button>
-    <button mat-stroked-button (click)="return()" color="warn">Return</button>
+<div *transloco="let t" class="break-words w-64 sm:w-96">
+  <h1 mat-dialog-title>{{ t('dialog.error') }}</h1>
+  <div mat-dialog-content>
+    <p class="mb-2">{{ data }}</p>
+    <div mat-dialog-actions align="end">
+      <button
+        id="dialog-retry-button"
+        mat-stroked-button
+        (click)="retry()"
+        color="primary"
+        [textContent]="t('button.retry')"
+      ></button>
+      <button
+        id="dialog-return-button"
+        mat-stroked-button
+        (click)="return()"
+        color="warn"
+        [textContent]="t('button.return')"
+      ></button>
+    </div>
   </div>
 </div>
