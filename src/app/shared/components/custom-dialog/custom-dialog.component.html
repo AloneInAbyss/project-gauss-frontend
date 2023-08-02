@@ -1,11 +1,14 @@
-<h1 mat-dialog-title>{{ data.title }}</h1>
-<div mat-dialog-content>
-  <p>
-    {{ data.description }}
-  </p>
-  <div mat-dialog-actions align="end">
-    <button mat-stroked-button mat-dialog-close color="warn">
-      {{ data.buttonLabel }}
-    </button>
+<div *transloco="let t" class="break-words w-64 sm:w-96">
+  <h1 mat-dialog-title>{{ data.title }}</h1>
+  <div mat-dialog-content>
+    <p class="mb-2">{{ data.description }}</p>
+    <div mat-dialog-actions align="end">
+      <button
+        mat-stroked-button
+        mat-dialog-close
+        color="warn"
+        [textContent]="data.buttonLabel ? data.buttonLabel : t('button.close')"
+      ></button>
+    </div>
   </div>
 </div>
