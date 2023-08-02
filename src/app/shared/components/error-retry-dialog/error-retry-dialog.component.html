@@ -4,12 +4,14 @@
     <p class="mb-2">{{ data }}</p>
     <div mat-dialog-actions align="end">
       <button
+        id="dialog-retry-button"
         mat-stroked-button
         (click)="retry()"
         color="primary"
         [textContent]="t('button.retry')"
       ></button>
       <button
+        id="dialog-return-button"
         mat-stroked-button
         (click)="return()"
         color="warn"
