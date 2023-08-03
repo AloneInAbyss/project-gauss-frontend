@@ -24,4 +24,8 @@ describe('StarRailService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('#listMainStatAvailability', () => {
+    expect(service.listMainStatAvailability()).toBeTruthy();
+  });
 });
