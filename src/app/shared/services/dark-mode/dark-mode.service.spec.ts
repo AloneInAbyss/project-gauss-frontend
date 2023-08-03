@@ -48,7 +48,7 @@ describe('DarkModeService', () => {
       ...mockMatchMedia,
       matches: false
     });
-    
+
     TestBed.configureTestingModule({});
     service = TestBed.inject(DarkModeService);
   });
