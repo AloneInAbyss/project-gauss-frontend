@@ -11,7 +11,7 @@ import { NavigationCard } from './models/navigation-card.model';
 export class NavigationCardsComponent {
   @Input() cards: NavigationCard[] = [];
 
-  constructor(private router: Router) {}
+  constructor(public router: Router) {}
 
   navigateToPage(pageName: string) {
     this.router.navigate([pageName]);
