@@ -1,42 +1,17 @@
+import { MatchMediaMock } from './../../mocks/match-media-mock';
+import { LocalStorageMock } from './../../mocks/local-storage-mock';
 import { TestBed } from '@angular/core/testing';
 
 import { DarkModeService } from './dark-mode.service';
 import { LocalStorageKeys } from '../../models/local-storage-keys-enum';
-
-const mockMatchMedia = {
-  matches: true,
-  media: '',
-  dispatchEvent: () => false,
-  addEventListener: () => {},
-  removeEventListener: () => {},
-  onchange: () => {},
-  addListener: () => {},
-  removeListener: () => {}
-};
 
 describe('DarkModeService', () => {
   let service: DarkModeService;
 
   let spyWindowMatchMedia: jasmine.Spy;
 
-  let storage: {
-    [key: string]: string;
-  } = {};
-
-  const mockLocalStorage = {
-    getItem: (key: string): string | null => {
-      return key in storage ? storage[key] : null;
-    },
-    setItem: (key: string, value: string) => {
-      storage[key] = `${value}`;
-    },
-    removeItem: (key: string) => {
-      delete storage[key];
-    },
-    clear: () => {
-      storage = {};
-    }
-  };
+  const mockLocalStorage = LocalStorageMock;
+  const mockMatchMedia = MatchMediaMock;
 
   beforeEach(() => {
     spyOn(localStorage, 'getItem').and.callFake(mockLocalStorage.getItem);
