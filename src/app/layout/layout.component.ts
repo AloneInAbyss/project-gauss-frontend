@@ -19,27 +19,41 @@ export class LayoutComponent implements OnDestroy {
   darkModeSubscription: Subscription;
 
   constructor(
-    private router: Router,
-    private t: TranslocoService,
+    public router: Router,
     public darkModeService: DarkModeService,
+    private t: TranslocoService,
     private renderer: Renderer2
   ) {
     this.darkMode$ = this.initializeDarkModeObservable();
     this.darkModeSubscription = this.subscribeToDarkModeService();
   }
 
-  initializeDarkModeObservable() {
+  private initializeDarkModeObservable() {
     return this.darkModeService
       .getDarkModeObservable()
       .pipe(startWith(this.darkModeService.getCurrentDarkModePreference()));
   }
 
-  subscribeToDarkModeService(): Subscription {
+  private subscribeToDarkModeService(): Subscription {
     return this.darkMode$.subscribe((isDarkMode) => {
       !isDarkMode
         ? this.renderer.addClass(document.body, 'light-mode')
         : this.renderer.removeClass(document.body, 'light-mode');
     });
+  }
+
+  private reloadPage() {
+    const currentRoute = this.router.url;
+    const targetRoute =
+      currentRoute !== `/${DummyRoute.path}`
+        ? `/${DummyRoute.path}`
+        : `/${HomeRoute.path}`;
+
+    this.router
+      .navigateByUrl(targetRoute, { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate([currentRoute]);
+      });
   }
 
   navigateToHome() {
@@ -57,20 +71,6 @@ export class LayoutComponent implements OnDestroy {
         localStorage.setItem(LocalStorageKeys.LANGUAGE, language);
         this.t.setActiveLang(language);
         this.reloadPage();
-      });
-  }
-
-  reloadPage() {
-    const currentRoute = this.router.url;
-    const targetRoute =
-      currentRoute !== `/${DummyRoute.path}`
-        ? `/${DummyRoute.path}`
-        : `/${HomeRoute.path}`;
-
-    this.router
-      .navigateByUrl(targetRoute, { skipLocationChange: true })
-      .then(() => {
-        this.router.navigate([currentRoute]);
       });
   }
 
