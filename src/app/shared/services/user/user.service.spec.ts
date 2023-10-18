@@ -3,28 +3,12 @@ import { TestBed } from '@angular/core/testing';
 import { UserService } from './user.service';
 import { AvailableLanguages } from '../../models/available-languages-enum';
 import { LocalStorageKeys } from '../../models/local-storage-keys-enum';
+import { LocalStorageMock } from '../../mocks/local-storage-mock';
 
 describe('UserService', () => {
   let service: UserService;
 
-  let storage: {
-    [key: string]: string;
-  } = {};
-
-  const mockLocalStorage = {
-    getItem: (key: string): string | null => {
-      return key in storage ? storage[key] : null;
-    },
-    setItem: (key: string, value: string) => {
-      storage[key] = `${value}`;
-    },
-    removeItem: (key: string) => {
-      delete storage[key];
-    },
-    clear: () => {
-      storage = {};
-    }
-  };
+  const mockLocalStorage = LocalStorageMock;
 
   beforeEach(() => {
     spyOn(localStorage, 'getItem').and.callFake(mockLocalStorage.getItem);
