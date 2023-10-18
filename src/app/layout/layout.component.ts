@@ -19,8 +19,8 @@ export class LayoutComponent implements OnDestroy {
   darkModeSubscription: Subscription;
 
   constructor(
-    public router: Router,
-    public darkModeService: DarkModeService,
+    private router: Router,
+    private darkModeService: DarkModeService,
     private t: TranslocoService,
     private renderer: Renderer2
   ) {
@@ -44,6 +44,7 @@ export class LayoutComponent implements OnDestroy {
 
   private reloadPage() {
     const currentRoute = this.router.url;
+    
     const targetRoute =
       currentRoute !== `/${DummyRoute.path}`
         ? `/${DummyRoute.path}`
