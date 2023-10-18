@@ -57,7 +57,7 @@ export class LayoutComponent implements OnDestroy {
   }
 
   navigateToHome() {
-    this.router.navigate(['/home']);
+    this.router.navigate([`/${HomeRoute.path}`]);
   }
 
   changeLanguage(language: string) {
