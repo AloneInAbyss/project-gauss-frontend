@@ -17,7 +17,7 @@ import { TranslocoService } from '@ngneat/transloco';
 import { RouterTestingModule } from '@angular/router/testing';
 import { DarkModeService } from '../shared/services/dark-mode/dark-mode.service';
 import { AvailableLanguages } from '../shared/models/available-languages-enum';
-import { DummyRoute, HomeRoute } from '../routes/routes';
+import { DummyRoute, HomeRoute, StarRailRoute } from '../routes/routes';
 import { Router } from '@angular/router';
 
 describe('LayoutComponent', () => {
@@ -125,6 +125,12 @@ describe('LayoutComponent', () => {
       `/${DummyRoute.path}`,
       { skipLocationChange: true }
     );
+  }));
+
+  it('should navigate to /star-rail route', fakeAsync(() => {
+    router.navigateByUrl(`/${StarRailRoute.path}`, { skipLocationChange: true });
+    tick();
+    expect(router.url).toBe(`/${StarRailRoute.path}`);
   }));
 
   it('should not change language if it is already the same', () => {
