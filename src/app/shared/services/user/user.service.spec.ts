@@ -39,7 +39,7 @@ describe('UserService', () => {
   });
 
   it('should set user language as PT', () => {
-    service.setUserLanguage(AvailableLanguages.EN)
+    service.setUserLanguage(AvailableLanguages.EN);
     expect(service.getUserLanguage()).toBe(AvailableLanguages.EN);
   });
 });

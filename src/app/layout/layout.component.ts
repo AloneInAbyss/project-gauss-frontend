@@ -44,7 +44,7 @@ export class LayoutComponent implements OnDestroy {
 
   private reloadPage() {
     const currentRoute = this.router.url;
-    
+
     const targetRoute =
       currentRoute !== `/${DummyRoute.path}`
         ? `/${DummyRoute.path}`

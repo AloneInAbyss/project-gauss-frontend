@@ -109,9 +109,7 @@ describe('LayoutComponent', () => {
 
     logoButton.click();
 
-    expect(router.navigate).toHaveBeenCalledWith([
-      `/${HomeRoute.path}`
-    ]);
+    expect(router.navigate).toHaveBeenCalledWith([`/${HomeRoute.path}`]);
   });
 
   it('should change language and reload page', fakeAsync(() => {
@@ -121,14 +119,15 @@ describe('LayoutComponent', () => {
     });
 
     expect(t.load).toHaveBeenCalledWith(AvailableLanguages.PT);
-    expect(router.navigateByUrl).toHaveBeenCalledWith(
-      `/${DummyRoute.path}`,
-      { skipLocationChange: true }
-    );
+    expect(router.navigateByUrl).toHaveBeenCalledWith(`/${DummyRoute.path}`, {
+      skipLocationChange: true
+    });
   }));
 
   it('should navigate to /star-rail route', fakeAsync(() => {
-    router.navigateByUrl(`/${StarRailRoute.path}`, { skipLocationChange: true });
+    router.navigateByUrl(`/${StarRailRoute.path}`, {
+      skipLocationChange: true
+    });
     tick();
     expect(router.url).toBe(`/${StarRailRoute.path}`);
   }));
@@ -143,18 +142,15 @@ describe('LayoutComponent', () => {
   });
 
   it('should change language and reload from dummy route', fakeAsync(() => {
-    spyOnProperty(router, 'url', 'get').and.returnValue(
-      `/${DummyRoute.path}`
-    )
+    spyOnProperty(router, 'url', 'get').and.returnValue(`/${DummyRoute.path}`);
 
     fixture.ngZone?.run(() => {
       component.changeLanguage(AvailableLanguages.PT);
       tick();
     });
 
-    expect(router.navigateByUrl).toHaveBeenCalledWith(
-      `/${HomeRoute.path}`,
-      { skipLocationChange: true }
-    );
+    expect(router.navigateByUrl).toHaveBeenCalledWith(`/${HomeRoute.path}`, {
+      skipLocationChange: true
+    });
   }));
 });
