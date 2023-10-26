@@ -33,6 +33,11 @@ describe('UserService', () => {
     expect(service.getUserLanguage()).toBe(AvailableLanguages.PT);
   });
 
+  it('should not get any default language', () => {
+    spyOn(service, 'getBrowserLang').and.returnValue(undefined);
+    expect(service.getUserLanguage()).toBe(AvailableLanguages.PT);
+  });
+
   it('should be created with default language as PT when found incompatible localStorage value', () => {
     localStorage.setItem(LocalStorageKeys.LANGUAGE, 'UNKNOWN');
     expect(service.getUserLanguage()).toBe(AvailableLanguages.PT);

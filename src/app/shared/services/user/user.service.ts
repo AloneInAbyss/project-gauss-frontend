@@ -7,9 +7,11 @@ import { LocalStorageKeys } from '../../models/local-storage-keys-enum';
   providedIn: 'root'
 })
 export class UserService {
+  getBrowserLang = getBrowserLang;
+  
   getUserLanguage(): string {
     const currentLang =
-      localStorage.getItem(LocalStorageKeys.LANGUAGE) ?? getBrowserLang() ?? '';
+      localStorage.getItem(LocalStorageKeys.LANGUAGE) ?? this.getBrowserLang() ?? '';
     const isLangAvailable = Object.values(AvailableLanguages).some(
       (availableLang) => availableLang === currentLang
     );
